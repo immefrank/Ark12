@@ -1,0 +1,19 @@
+#editor, #myParagraph
+{
+	width: 90%;
+	padding: 5px;
+	border: 2px solid #000;
+	border-radius: 5px;
+	background-color: #f7f7f7;
+	margin: auto;
+}
+
+#myParagraph[contenteditable="true"],#editor[contenteditable="true"]
+{
+	width: 90%;
+	padding: 5px;
+	border: 2px solid #000;
+	background-color: #e3e3e3;
+	margin: auto;
+	border-style: dashed;
+}
