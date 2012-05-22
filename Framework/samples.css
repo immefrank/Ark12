@@ -16,10 +16,13 @@
 	background-color: #e3e3e3;
 	margin: auto;
 	border-style: dashed;
+<<<<<<< HEAD
 }
 
 .imageContainer{
 	overflow: auto; /* overflow is needed */ 
 	resize: both; 
 	
+=======
+>>>>>>> upstream/master
 }

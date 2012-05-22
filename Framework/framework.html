@@ -12,6 +12,7 @@
 		<link rel="stylesheet" type="text/css" href="style.css" />
 
 		<link rel="stylesheet" type="text/css" href="samples.css" />
+<<<<<<< HEAD
         
        
         
@@ -30,11 +31,17 @@
 		<script>
 
 
+=======
+
+		<script>
+
+>>>>>>> upstream/master
 			window.onload=function()
 
 			{
 
 				function makeWYSIWYG(editor)
+<<<<<<< HEAD
 				
 				
 
@@ -42,6 +49,13 @@
 					var i =0;
 
 					//If the DOM element exists
+=======
+
+				{
+
+					//If the DOM element exists
+
+>>>>>>> upstream/master
 					if(editor)
 
 					{
@@ -263,6 +277,7 @@
 										if(src)
 
 										{
+<<<<<<< HEAD
 											//Create new Div
 											  var newDiv = document.createElement("div");
 											  //Set class and id.
@@ -283,6 +298,10 @@
 											//Confine Drag and Drop to editor div
 											$( ".imageContainer" ).draggable({ containment: "#editor" , stack: "#editor div" });
 											i++;
+=======
+
+											document.execCommand('insertImage', false, src);
+>>>>>>> upstream/master
 
 										}
 
@@ -335,12 +354,17 @@
 				
 
 				makeWYSIWYG(document.getElementById('editor'));
+<<<<<<< HEAD
 		
 
 
 			};
 			
 		
+=======
+
+			};
+>>>>>>> upstream/master
 
 		</script>
 
