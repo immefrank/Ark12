@@ -1,0 +1,393 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+	<head>
+
+		<title>Ark12 online editor</title>
+
+		<meta charset="utf-8" />
+
+		<link rel="stylesheet" type="text/css" href="style.css" />
+
+		<link rel="stylesheet" type="text/css" href="samples.css" />
+<<<<<<< HEAD
+        
+       
+        
+    
+	<script src="../jquery-ui-1.8.20.custom/development-bundle/jquery-1.7.2.js"></script>
+	<script src="../jquery-ui-1.8.20.custom/development-bundle/ui/jquery.ui.core.js"></script>
+	<script src="../jquery-ui-1.8.20.custom/development-bundle/ui/jquery.ui.widget.js"></script>
+	<script src="../jquery-ui-1.8.20.custom/development-bundle/ui/jquery.ui.mouse.js"></script>
+	<script src="../jquery-ui-1.8.20.custom/development-bundle/ui/jquery.ui.draggable.js"></script>
+    <script src="../jquery-ui-1.8.20.custom/development-bundle/ui/jquery.ui.resizable.js"></script>
+
+
+
+
+
+		<script>
+
+
+=======
+
+		<script>
+
+>>>>>>> upstream/master
+			window.onload=function()
+
+			{
+
+				function makeWYSIWYG(editor)
+<<<<<<< HEAD
+				
+				
+
+				{
+					var i =0;
+
+					//If the DOM element exists
+=======
+
+				{
+
+					//If the DOM element exists
+
+>>>>>>> upstream/master
+					if(editor)
+
+					{
+
+						//create the buttons container
+
+						var buttons_container = document.createElement('div');
+
+						
+
+						//define some properties to it...
+
+						buttons_container.style.textAlign='center';
+
+						buttons_container.style.marginTop='5px';
+
+						buttons_container.className='makeWYSIWYG_buttons_container';
+
+						
+
+						//create the buttons inside the container
+
+						buttons_container.innerHTML=''+
+
+							'<button class="makeWYSIWYG_editButton">Edit</button>'+
+
+							'<button class="makeWYSIWYG_viewHTML">View HTML</button>'+
+
+							'<div class="makeWYSIWYG_buttons" style="display: none;">'+
+
+								'<button data-tag="bold"><b>Bold</b></button>'+
+
+								'<button data-tag="italic"><em>Italic</em></button>'+
+
+								'<button data-tag="underline"><ins>Underline</ins></button>'+
+
+								'<button data-tag="strikeThrough"><del>Strike</del></button>'+
+
+								'<button data-tag="insertUnorderedList">&bull; Unordered List</button>'+
+
+								'<button data-tag="insertOrderedList">1. Ordered List</button>'+
+
+								'<button data-tag="createLink"><ins style="color: blue;">Link</ins></button>'+
+
+								'<button data-tag="insertImage">Image</button>'+
+
+								'<button data-value="h1" data-tag="heading">Main title</button>'+
+
+								'<button data-value="h2" data-tag="heading">Subtitle</button><br />'+
+
+								'<button data-tag="removeFormat">Remove format</button>'+
+
+							'</div>';
+
+							
+
+						//insert the buttons after the editor
+
+						var parent = editor.parentNode;
+
+
+
+						if(parent.lastchild == editor)
+
+						{
+
+							parent.appendChild(buttons_container);
+
+						}
+
+						else
+
+						{
+
+							parent.insertBefore(buttons_container, editor.nextSibling);
+
+						}
+
+						//by default, the element is not editable
+
+						editor.isEditable=false; 
+
+						editor.setAttribute('contenteditable', false);
+
+						
+
+						//permits to make the element editable or not
+
+						editor.makeEditable = function(bool)
+
+						{
+
+							//protect the value
+
+							bool = bool==undefined?true:(typeof bool === 'boolean'?bool:true);
+
+							
+
+							//change the editable state
+
+							this.isEditable=bool;
+
+							this.setAttribute('contenteditable',bool);
+
+							
+
+							//show/hide the buttons
+
+							if(bool)
+
+							{
+
+								buttons_container.querySelector('.makeWYSIWYG_buttons').style.display='block';
+
+							}
+
+							else
+
+							{
+
+								buttons_container.querySelector('.makeWYSIWYG_buttons').style.display='none';
+
+							}
+
+						};
+
+						
+
+						//click on the "Edit" button
+
+						buttons_container.querySelector('.makeWYSIWYG_editButton').addEventListener('click',function(e)
+
+						{
+
+							if(editor.isEditable)
+
+							{
+
+								editor.makeEditable(false);
+
+								this.innerHTML='Edit';
+
+							}
+
+							else
+
+							{
+
+								editor.makeEditable(true);
+
+								this.innerHTML='Save';
+
+							}
+
+							e.preventDefault();
+
+						},false);
+
+						
+
+						//click on the "View HTML" button
+
+						buttons_container.querySelector('.makeWYSIWYG_viewHTML').addEventListener('click',function(e)
+
+						{
+
+							alert(editor.innerHTML);
+
+							e.preventDefault();
+
+						},false);
+
+						
+
+						//get the format buttons
+
+						var buttons = buttons_container.querySelectorAll('button[data-tag]');
+
+						
+
+						//For each of them...
+
+						for(var i=0, l=buttons.length; i<l; i++)
+
+						{
+
+							//We bind the click event
+
+							buttons[i].addEventListener('click',function(e)
+
+							{
+
+								var tag = this.getAttribute('data-tag');
+
+								switch(tag)
+
+								{
+
+									case 'createLink':
+
+										var link = prompt('Please specify the link.');
+
+										if(link)
+
+										{
+
+											document.execCommand('createLink', false, link);
+
+										}
+
+									break;
+
+									
+
+									case 'insertImage':
+
+										var src = prompt('Please specify the link of the image.');
+
+										if(src)
+
+										{
+<<<<<<< HEAD
+											//Create new Div
+											  var newDiv = document.createElement("div");
+											  //Set class and id.
+											  newDiv.setAttribute("id",['imageDiv' + i]);
+											  newDiv.setAttribute("class","imageContainer ui-widget-content");
+											   main_div = document.getElementById("editor");
+											   //Add new div into editor div
+											  main_div.appendChild(newDiv);
+											  //Get image dimensions and set div dimensions to it
+											  tempImage = new Image;
+											tempImage.src=src;
+											imageWidth = tempImage.width;
+											imageHeight = tempImage.height;
+											document.getElementById(['imageDiv' + i]).style.width = imageWidth+'px';
+										    document.getElementById(['imageDiv' + i]).style.height = imageHeight+'px';
+											  //Add picture
+											document.getElementById(['imageDiv' + i]).innerHTML="<img src=" + src + " alt=''/>";
+											//Confine Drag and Drop to editor div
+											$( ".imageContainer" ).draggable({ containment: "#editor" , stack: "#editor div" });
+											i++;
+=======
+
+											document.execCommand('insertImage', false, src);
+>>>>>>> upstream/master
+
+										}
+
+									break;
+
+									
+
+									case 'heading':
+
+										try
+
+										{
+
+											document.execCommand(tag, false, this.getAttribute('data-value'));
+
+										}
+
+										catch(e)
+
+										{
+
+											//The browser doesn't support "heading" command, we use an alternative
+
+											document.execCommand('formatBlock', false, '<'+this.getAttribute('data-value')+'>');
+
+										}
+
+									break;
+
+									
+
+									default:
+
+										document.execCommand(tag, false, this.getAttribute('data-value'));
+
+								}
+
+								e.preventDefault();
+
+							});
+
+						}
+
+					}			
+
+					return editor;
+
+				};
+
+				
+
+				makeWYSIWYG(document.getElementById('editor'));
+<<<<<<< HEAD
+		
+
+
+			};
+			
+		
+=======
+
+			};
+>>>>>>> upstream/master
+
+		</script>
+
+	</head>
+
+	<body>
+
+		<article>
+
+			<section>
+
+				<div id="editor">
+
+					<h1>Ark12 online editor</h1>
+
+					<p>click on the <b>EDIT</b> button <ins>below</ins>. And let the <I>magic</I> begin!</p>
+
+				</div>	
+
+			</section>
+
+		</article>
+
+	</body>
+
+</html>
