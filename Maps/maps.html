@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <style type="text/css">
+      html { height: 100% }
+      body { height: 100%; margin: 0; padding: 0 }
+      #map_canvas { height: 100% }
+    </style>
+    <script type="text/javascript"
+      src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBwYC4hZOG9oTY3fUtshjElwTXCkBztycA&sensor=true">
+    </script>
+    <script type="text/javascript">	
+	//Variables
+	var myOptions;
+	var map;
+	var markersArray = [];
+	
+	//Initialize MAP
+      function initialize() {
+        myOptions = {
+          center: new google.maps.LatLng(-34.397, 150.644),
+          zoom: 6,
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+        map = new google.maps.Map(document.getElementById("map_canvas"),
+            myOptions);
+	  }
+	  
+	  
+	  //Add marker based on photo
+	  function photo(lat,lng){
+		  
+		  
+		  //Clear Markers Array
+		  if (markersArray) {
+    for (i in markersArray) {
+      markersArray[i].setMap(null);
+    }
+	markersArray.length = 0;
+  }
+	  var myLatlng = new google.maps.LatLng(lat,lng);
+	  
+	  map.setCenter(myLatlng);
+
+  var marker = new google.maps.Marker({
+      position: myLatlng,
+      map: map,
+      title:"Hello World!"
+  });
+  //Add marker to array
+  markersArray.push(marker);
+      }
+	  
+
+    </script>
+  </head>
+  <body onload="initialize()">
+  
+  <div id="image_div1" onclick="photo(-25.363882,131.044922)" style=" width:100px; height:100px"><img  name="image1" src="" width="100" height="100" alt="" style="background-color: #FF0000"></div>
+  <div id="image_div2" onclick="photo(55.363882,100.044922)" style=" width:100px; height:100px"><img  name="image2" src="" width="100" height="100" alt="" style="background-color: #00FF00"></div>
+  
+  
+  
+  <div id="map_canvas" style="width:500px; height:450px"></div>
+  </body>
+</html>
